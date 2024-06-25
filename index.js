@@ -49,7 +49,4 @@ app.get('/user_info/user_wallet/', authenticate, async (req, res) => {
 });
 
 
-// Start the server
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-});
+module.exports = app;
