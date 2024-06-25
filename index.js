@@ -1,7 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 3001;
 const qs = require('qs');
 
 // Define your API key (this should be stored securely, e.g., in an environment variable)
