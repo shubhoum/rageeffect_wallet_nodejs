@@ -41,15 +41,27 @@ app.get('/user_info/wallet/:wallet', authenticate, async (req, res) => {
 });
 
 // Route to handle missing wallet parameter (requires authentication)
-app.get('/user_info/user_wallet/', authenticate, async (req, res) => {
+app.get('/user_info/wallet/', authenticate, async (req, res) => {
     return res.status(400).json({
         status: "error",
         message: 'Wallet address is required'
     });
 });
 
+// Route to handle missing wallet parameter (requires authentication)
+app.get('/user_info/', authenticate, async (req, res) => {
+    return res.status(400).json({
+        status: "error",
+        message: 'Invalid URL, Try /user_info/wallet/your_wallet_address'
+    });
+});
+
+
+app.get('/', authenticate, async (req, res) => {
+    return "Welcome to the RageEffect";
+});
 
 // Start the server
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+    console.log(`Server is running`);
 });
