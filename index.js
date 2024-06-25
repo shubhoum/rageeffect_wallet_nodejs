@@ -1,7 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 80;
 const qs = require('qs');
 
 // Define your API key (this should be stored securely, e.g., in an environment variable)
@@ -49,4 +49,7 @@ app.get('/user_info/user_wallet/', authenticate, async (req, res) => {
 });
 
 
-module.exports = app;
+// Start the server
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
