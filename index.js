@@ -17,13 +17,8 @@ const authenticate = (req, res, next) => {
     next();
 };
 
-// Example route (does not require authentication)
-app.get('/', (req, res) => {
-    res.send('Hello World from the server!');
-});
-
 // Route to call an external API with POST request using wallet parameter from URL (requires authentication)
-app.get('/api/user_wallet/:wallet', authenticate, async (req, res) => {
+app.get('/user_info/wallet/:wallet', authenticate, async (req, res) => {
     const { wallet } = req.params;
 
     if (!wallet) {
@@ -46,20 +41,13 @@ app.get('/api/user_wallet/:wallet', authenticate, async (req, res) => {
 });
 
 // Route to handle missing wallet parameter (requires authentication)
-app.get('/api/user_wallet/', authenticate, async (req, res) => {
+app.get('/user_info/user_wallet/', authenticate, async (req, res) => {
     return res.status(400).json({
         status: "error",
         message: 'Wallet address is required'
     });
 });
 
-// Route to handle invalid requests (requires authentication)
-app.get('/api/', authenticate, async (req, res) => {
-    return res.status(400).json({
-        status: "error",
-        message: 'Invalid request'
-    });
-});
 
 // Start the server
 app.listen(port, () => {
